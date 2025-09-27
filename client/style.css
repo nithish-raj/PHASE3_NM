@@ -1,0 +1,56 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 350px;
+}
+
+/* Validation Feedback Styles */
+input.invalid {
+    border-color: red;
+    background-color: #ffe8e8;
+}
+
+input.valid {
+    border-color: green;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.8em;
+    margin-top: 5px;
+    display: block;
+}
+
+#server-message {
+    text-align: center;
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.failure {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+.hidden {
+    display: none;
+}
+/* (You can add more styles for form-group, label, etc. if needed) */
