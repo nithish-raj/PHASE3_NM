@@ -1,9 +1,8 @@
 const form = document.getElementById('registrationForm');
 const inputs = form.querySelectorAll('input');
 const serverMessage = document.getElementById('server-message');
-const SERVER_URL = 'http://localhost:5000/api/register'; // API endpoint
+const SERVER_URL = 'http://localhost:5000/api/register';
 
-// --- Phase 2: Client-Side Validation Logic ---
 
 const validationRules = {
     username: (value) => value.length >= 3 ? '' : 'Username must be at least 3 characters.',
@@ -48,16 +47,14 @@ const validateField = (input) => {
     return true;
 };
 
-// Listeners for real-time feedback (Phase 2)
 inputs.forEach(input => {
     input.addEventListener('blur', () => validateField(input));
     input.addEventListener('input', () => serverMessage.classList.add('hidden'));
 });
 
-// --- Phase 3: Form Submission and Server Communication ---
 
 form.addEventListener('submit', async (e) => {
-    e.preventDefault(); // Stop default form submission
+    e.preventDefault(); 
 
     let isFormValid = true;
     inputs.forEach(input => {
@@ -84,17 +81,17 @@ form.addEventListener('submit', async (e) => {
         const data = await res.json();
         serverMessage.classList.remove('hidden');
 
-        if (res.ok) { // Status 201 Created (Success)
+        if (res.ok) { 
             serverMessage.textContent = `Success: ${data.message}`;
             serverMessage.className = 'success';
             form.reset(); 
             inputs.forEach(input => input.classList.remove('valid'));
-        } else { // Status 400, 409, 500 (Failure)
+        } else { 
             const errorMsg = data.error || 'An unknown server error occurred.';
             serverMessage.textContent = `Error: ${errorMsg}`;
             serverMessage.className = 'failure';
 
-            // Highlight the email field if the server says it's a duplicate
+           
             if (errorMsg.includes('email is already registered')) {
                  displayError(document.getElementById('email'), document.getElementById('email-error'), errorMsg);
             }
