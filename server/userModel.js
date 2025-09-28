@@ -10,12 +10,12 @@ const userSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
-        unique: true, // Crucial for enforcing unique emails!
+        unique: true, 
         trim: true,
         lowercase: true,
     },
     password: {
-        type: String, // Stores the HASHED password
+        type: String, 
         required: true
     }
 }, { timestamps: true });
