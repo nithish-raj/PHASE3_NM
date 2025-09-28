@@ -16,7 +16,6 @@ body {
     width: 350px;
 }
 
-/* Validation Feedback Styles */
 input.invalid {
     border-color: red;
     background-color: #ffe8e8;
@@ -53,4 +52,3 @@ input.valid {
 .hidden {
     display: none;
 }
-/* (You can add more styles for form-group, label, etc. if needed) */
