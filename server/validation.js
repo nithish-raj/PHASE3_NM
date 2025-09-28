@@ -5,8 +5,6 @@ const validateRegistration = (req, res, next) => {
     if (!username || !email || !password) {
         return res.status(400).json({ error: 'All fields are required.' });
     }
-
-    // 2. Length and Format Checks
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (username.length < 3) {
@@ -19,7 +17,6 @@ const validateRegistration = (req, res, next) => {
         return res.status(400).json({ error: 'Password must be at least 8 characters long.' });
     }
 
-    // If all checks pass, move to the controller
     next();
 };
 
