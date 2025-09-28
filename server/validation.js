@@ -1,7 +1,7 @@
 const validateRegistration = (req, res, next) => {
     const { username, email, password } = req.body;
 
-    // 1. Required Field Check
+    
     if (!username || !email || !password) {
         return res.status(400).json({ error: 'All fields are required.' });
     }
