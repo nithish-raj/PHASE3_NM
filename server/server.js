@@ -12,7 +12,13 @@ const PORT = process.env.PORT || 5000;
 const MONGO_URI = process.env.MONGO_URI;
 
 
-app.use(cors()); 
+app.use(cors({
+    // PASTE YOUR NETLIFY URL HERE (e.g., https://my-phase4-form.netlify.app)
+    origin: 'https://client-side-form.netlify.app/', 
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+    optionsSuccessStatus: 204
+})); 
 app.use(express.json()); 
 
 
