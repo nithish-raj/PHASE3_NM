@@ -11,6 +11,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 const MONGO_URI = process.env.MONGO_URI;
 
+<<<<<<< HEAD
 // --- DEFINE RATE LIMITER POLICY ---
 const apiLimiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes window
@@ -37,3 +38,19 @@ app.post('/api/register', apiLimiter, validateRegistration, registerUser);
 
 // --- Server Start ---
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
+=======
+
+app.use(cors()); 
+app.use(express.json()); 
+
+
+mongoose.connect(process.env.MONGO_URI)
+    .then(() => console.log('MongoDB Connected successfully.'))
+    .catch(err => console.error('MongoDB connection error:', err.message));
+
+app.post('/api/register', validateRegistration, registerUser);
+
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
+>>>>>>> eb69874119b590ac2184caac046b7c563ff80c2d
