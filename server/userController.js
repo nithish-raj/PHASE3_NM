@@ -1,37 +1,39 @@
-const User = require('./userModel');
-const bcrypt = require('bcryptjs'); // Library for secure password hashing
+const bcrypt = require('bcryptjs');
+const User = require('./userModel'); 
 
 const registerUser = async (req, res) => {
-    const { username, email, password } = req.body;
+    // Added confirmPassword to destructuring
+    const { username, email, password, confirmPassword } = req.body;
 
     try {
-        // --- 1. Uniqueness Check (Security) ---
-        const existingUser = await User.findOne({ $or: [{ email }, { username }] });
+        // 1. Uniqueness Check (remains the same)
+        const existingUser = await User.findOne().or([{ email }, { username }]);
         if (existingUser) {
-            let errorMsg = existingUser.email === email ? 'This email is already registered.' : 'Username is already taken.';
-            return res.status(409).json({ error: errorMsg }); // 409 Conflict
+            return res.status(409).json({ error: 'This email or username is already registered.' });
         }
 
-        // --- 2. Password Hashing (Core Security Feature) ---
+        // 2. Password Hashing (Logic remains the same, using only the original password)
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
-        
-        // --- 3. Create and Save User (Data Persistence) ---
+
+        // 3. Create and Save New User (Logic remains the same)
         const newUser = new User({
             username,
             email,
-            password: hashedPassword // Store the HASH
+            password: hashedPassword 
         });
 
         await newUser.save();
-        
-        console.log(`User ${username} saved successfully.`);
-        res.status(201).json({ message: 'Registration successful!' }); // 201 Created
+
+        // 4. Success Response
+        return res.status(201).json({ message: 'Registration successful!' });
 
     } catch (err) {
-        console.error('Registration error:', err.message);
-        res.status(500).json({ error: 'Server error during registration.' });
+        console.error('SERVER ERROR during registration:', err.message);
+        return res.status(500).json({ error: 'Server error during registration.' });
     }
 };
 
-module.exports = { registerUser };
+module.exports = {
+    registerUser
+};

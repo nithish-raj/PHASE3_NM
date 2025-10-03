@@ -3,14 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phase 3 Registration Form</title>
+    <title>User Registration</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <div class="container">
-        <h1>Secure User Registration</h1>
+        <h1>User Registration</h1>
+        
+        <div id="statusMessage" class="hidden"></div>
+        
         <form id="registrationForm">
-            
             <div class="form-group">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" required>
@@ -28,9 +31,13 @@
                 <input type="password" id="password" name="password" required>
                 <span class="error-message" id="password-error"></span>
             </div>
-
+            
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password:</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+                <span class="error-message" id="confirmPassword-error"></span>
+            </div>
             <button type="submit" id="submitBtn">Register</button>
-            <p id="server-message" class="hidden"></p>
         </form>
     </div>
 
