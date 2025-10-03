@@ -1,7 +1,7 @@
 const form = document.getElementById('registrationForm');
 const inputs = form.querySelectorAll('input');
 const serverMessage = document.getElementById('server-message');
-const SERVER_URL = 'https://[YOUR-LIVE-API-NAME].onrender.com/api/register'; 
+const SERVER_URL = 'https://client-side-form.onrender.com'; 
 
 
 const validationRules = {
